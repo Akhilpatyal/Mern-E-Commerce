@@ -21,8 +21,15 @@ useEffect(()=>{
 fetchProductData();
 },[productId])
   return productData?(
-    <div>
-      <h1>Product</h1>
+    <div className='border-t-1 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+      <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
+        {/* product images */}
+        <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
+          <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between '>
+
+          </div>
+        </div>
+      </div>
     </div>
   ): <div className='opacity-0'></div>
 }
