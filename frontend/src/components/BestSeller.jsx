@@ -10,7 +10,7 @@ const BestSeller = () => {
         const bestProduct = products.filter((items) => items.bestseller );
         setBestSeller(bestProduct.slice(0, 5));
         
-    }, [])
+    }, [products])
     return (
         <div className='my-10'>
             <div className='text-center py-8 text-3xl'>
