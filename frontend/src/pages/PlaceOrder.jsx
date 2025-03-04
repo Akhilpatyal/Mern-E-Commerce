@@ -67,6 +67,17 @@ function PlaceOrder() {
           }
           break;
 
+          case 'stripe':
+            const responseStripe = await axios.post(backendURL + '/api/order/stripe', orderData, { headers: { token } })
+            if (responseStripe.data.success) {
+              const {session_url}=responseStripe.data
+              window.location.replace(session_url)
+            }else{
+              toast.error(responseStripe.data.message)
+            }
+
+          break;
+
         default:
           break;
       }
@@ -112,8 +123,8 @@ function PlaceOrder() {
           <Title text1={'Payment'} text2={'Method'} />
           {/* payment method selection */}
           <div className="flex gap-3 flex-col lg:flex-row">
-            <div onClick={() => setMethod('strip')} className="flex item-center gap-3 border p-2 px-3 cursor-pointer">
-              <p className={`min-w-3 h-3.5 border rounded-full ${method === 'strip' ? 'bg-green-400' : ''}`}></p>
+            <div onClick={() => setMethod('stripe')} className="flex item-center gap-3 border p-2 px-3 cursor-pointer">
+              <p className={`min-w-3 h-3.5 border rounded-full ${method === 'stripe' ? 'bg-green-400' : ''}`}></p>
               <img src={assets.stripe_logo} className='h-5 mx-4' />
             </div>
             <div onClick={() => setMethod('razorpay')} className="flex item-center gap-3 border p-2 px-3 cursor-pointer">
