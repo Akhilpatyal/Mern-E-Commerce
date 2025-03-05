@@ -53,6 +53,10 @@ const listProduct = async (req, res) => {
     // Logic for listing products
     try {
         const product=await productModel.find({});
+        console.log(product);
+        if (!product.length) {
+            return res.status(404).json({ success: false, message: "No products found" });
+        }
         res.json({success:true,product});
     } catch (error) {
         console.log(error);

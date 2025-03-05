@@ -43,15 +43,15 @@ const registerUser = async (req, res) => {
     // Checking if the user already exists
     const exist = await userModel.findOne({ email });
     if (exist) {
-      return res.status(400).json({ success: false, msg: "User already exists" });
+      return res.status(400).json({ success: false, message: "User already exists" });
     }
 
     // Validating email and password
     if (!validator.isEmail(email)) {
-      return res.status(400).json({ success: false, msg: "Please enter a valid email" });
+      return res.status(400).json({ success: false, message: "Please enter a valid email" });
     }
     if (password.length < 8) {
-      return res.status(400).json({ success: false, msg: "Password must be at least 8 characters long" });
+      return res.status(400).json({ success: false, message: "Password must be at least 8 characters long" });
     }
 
     // Hash the password
@@ -60,8 +60,8 @@ const registerUser = async (req, res) => {
 
     // Create a new user
     const newUser = new userModel({
-      name,
-      email,
+      name:name,
+      email:email,
       password: hashedPassword,
     });
 
